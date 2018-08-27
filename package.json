@@ -1,0 +1,19 @@
+{
+  "name": "rock-paper-scissors",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./src/App.js",
+  "scripts": {
+    "start": "parcel ./public/index.html",
+    "build": "parcel build ./public/index.html",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "repository": "git@github.com:maciejbarel/rock-paper-scissors.git",
+  "author": "Maciej Barelkowski",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "23.5.0",
+    "parcel": "1.9.7"
+  }
+}
