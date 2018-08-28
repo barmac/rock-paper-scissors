@@ -1,4 +1,5 @@
-import { MOVE_TYPE } from './Move/Move';
+import Move, { MOVE_TYPE } from './Move/Move';
+import Player from './Player/Player';
 
 export const GAME_RESULT = Object.freeze({
   PLAYER_ONE: 0,
@@ -8,12 +9,12 @@ export const GAME_RESULT = Object.freeze({
 
 export default class Game {
   getResult() {
-    if (![
-      this.firstPlayer,
-      this.secondPlayer,
-      this.firstPlayerMove,
-      this.secondPlayerMove,
-    ].every()) {
+    if (!(
+      this.firstPlayer &&
+      this.secondPlayer &&
+      this.firstPlayerMove &&
+      this.secondPlayerMove
+    )) {
       throw new Error('Not all players and moves are specified');
     }
 
