@@ -2,8 +2,8 @@ import Move, { MOVE_TYPE } from './Move/Move';
 import Player from './Player/Player';
 
 export const GAME_RESULT = Object.freeze({
-  PLAYER_ONE: 0,
-  PLAYER_TWO: 1,
+  FIRST_PLAYER: 0,
+  SECOND_PLAYER: 1,
   TIE: 2,
 });
 
@@ -26,11 +26,11 @@ export default class Game {
 
     switch (firstMoveType) {
       case MOVE_TYPE.PAPER:
-        return secondMoveType === MOVE_TYPE.ROCK ? GAME_RESULT.PLAYER_ONE : GAME_RESULT.PLAYER_TWO;
+        return secondMoveType === MOVE_TYPE.ROCK ? GAME_RESULT.FIRST_PLAYER : GAME_RESULT.SECOND_PLAYER;
       case MOVE_TYPE.ROCK:
-        return secondMoveType === MOVE_TYPE.SCISSORS ? GAME_RESULT.PLAYER_ONE : GAME_RESULT.PLAYER_TWO;
+        return secondMoveType === MOVE_TYPE.SCISSORS ? GAME_RESULT.FIRST_PLAYER : GAME_RESULT.SECOND_PLAYER;
       case MOVE_TYPE.SCISSORS:
-        return secondMoveType === MOVE_TYPE.ROCK ? GAME_RESULT.PLAYER_ONE : GAME_RESULT.PLAYER_TWO;
+        return secondMoveType === MOVE_TYPE.PAPER ? GAME_RESULT.FIRST_PLAYER : GAME_RESULT.SECOND_PLAYER;
       default:
         throw new Error('Unknown move');
     }
