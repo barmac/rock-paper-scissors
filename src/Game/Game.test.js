@@ -1,7 +1,6 @@
 import Game, { GAME_RESULT } from './Game';
 import { MOVE_TYPE } from './Move/Move';
 
-const mockPlayerNames = ['PLAYER_ONE', 'PLAYER_TWO'];
 const winnerLoserConfigurations = [
   [MOVE_TYPE.PAPER, MOVE_TYPE.ROCK],
   [MOVE_TYPE.ROCK, MOVE_TYPE.SCISSORS],
@@ -32,8 +31,6 @@ describe('Game', () => {
 
     beforeEach(() => {
       game = new Game();
-      game.setFirstPlayer(mockPlayerNames[0]);
-      game.setSecondPlayer(mockPlayerNames[1]);
     });
 
     describe('TIE', () => {

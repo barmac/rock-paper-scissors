@@ -1,5 +1,4 @@
 import Move, { MOVE_TYPE } from './Move/Move';
-import Player from './Player/Player';
 
 export const GAME_RESULT = Object.freeze({
   FIRST_PLAYER: 0,
@@ -10,8 +9,6 @@ export const GAME_RESULT = Object.freeze({
 export default class Game {
   getResult() {
     if (!(
-      this.firstPlayer &&
-      this.secondPlayer &&
       this.firstPlayerMove &&
       this.secondPlayerMove
     )) {
@@ -34,14 +31,6 @@ export default class Game {
       default:
         throw new Error('Unknown move');
     }
-  }
-
-  setFirstPlayer(name) {
-    this.firstPlayer = new Player(name);
-  }
-
-  setSecondPlayer(name) {
-    this.secondPlayer = new Player(name);
   }
 
   assignMoveToFirstPlayer(moveType) {
