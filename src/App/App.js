@@ -1,4 +1,4 @@
-import Game, { MOVE_TYPE } from '../Game';
+import Game, { MISSING_MOVE_ERROR, MOVE_TYPE } from '../Game';
 
 const GAME_MODE = {
   PLAYER_VS_COMPUTER: 'PLAYER_VS_COMPUTER',
@@ -109,33 +109,36 @@ export class App {
     this.rootElement.querySelector('[data-result-button]')
       .addEventListener('click', () => this.showResult());
 
-    Object.keys(MOVE_TYPE)
-      .forEach(key => {
-        this.rootElement.querySelector(`[data-first-player] [data-move="${key}"]`)
-          .addEventListener('click', () => this.assignFirstPlayerMove(MOVE_TYPE[key]));
-
-        this.rootElement.querySelector(`[data-second-player] [data-move="${key}"]`)
-          .addEventListener('click', () => this.assignSecondPlayerMove(MOVE_TYPE[key]));
-      });
+    if (this.state.mode === GAME_MODE.PLAYER_VS_COMPUTER) {
+      Object.keys(MOVE_TYPE)
+        .forEach(key => {
+          this.rootElement.querySelector(`[data-first-player] [data-move="${key}"]`)
+            .addEventListener('click', () => this.assignFirstPlayerMove(MOVE_TYPE[key]));
+        });
+    }
   }
 
   getChooseMoveTemplate() {
-    const moveListTemplate = this.getMoveListTemplate();
+    const hiddenMoveTemplate = this.getHiddenMoveTemplate();
 
     return `
       <section>
         <div data-first-player>
           <h3>${this.state.firstPlayerName}</h3>
-          <div data-move-list>${moveListTemplate}</div>
+          <div data-move-list>${this.state.mode === GAME_MODE.PLAYER_VS_COMPUTER ? this.getMoveListTemplate() : hiddenMoveTemplate}</div>
         </div>
         <div data-second-player>
           <h3>${this.state.secondPlayerName}</h3>
-          <div data-move-list>${moveListTemplate}</div>
+          <div data-move-list>${hiddenMoveTemplate}</div>
         </div>
       </section>
       <section data-result>
         <button data-result-button>Get result</button>
       </section>`;
+  }
+
+  getHiddenMoveTemplate() {
+    return '<button disabled>?</button>';
   }
 
   getMoveListTemplate() {
@@ -145,15 +148,38 @@ export class App {
   }
 
   showResult() {
+    this.assignMovesToComputerPlayers();
+
     try {
       const result = this.state.currentGame.getResult();
+
       this.setState({
         result,
         stage: GAME_STAGE.SHOW_RESULT,
-      })
+      });
     } catch (error) {
-      console.error(error);
+      if (error.message === MISSING_MOVE_ERROR) {
+        alert('Select your move first');
+      } else {
+        console.error(error);
+      }
     }
+  }
+
+  assignMovesToComputerPlayers() {
+    if (this.state.mode === GAME_MODE.COMPUTER_VS_COMPUTER) {
+      this.assignFirstPlayerMove(this.getComputerPlayerMove());
+    }
+
+    this.assignSecondPlayerMove(this.getComputerPlayerMove());
+  }
+
+  getComputerPlayerMove() {
+    const moveTypeKeys = Object.keys(MOVE_TYPE);
+    const moveIndex = Math.floor(Math.random() * moveTypeKeys.length);
+    const moveKey = moveTypeKeys[moveIndex];
+
+    return MOVE_TYPE[moveKey];
   }
 
   assignFirstPlayerMove(move) {
@@ -174,11 +200,11 @@ export class App {
   getShowResultTemplate() {
     return `
       <section>
-        <div id="first-player">
+        <div>
           <h3>${this.state.firstPlayerName}</h3>
           <div>${this.state.firstPlayerMove}</div>
         </div>
-        <div id="second-player">
+        <div>
           <h3>${this.state.secondPlayerName}</h3>
           <div>${this.state.secondPlayerMove}</div>
         </div>

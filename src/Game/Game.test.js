@@ -1,4 +1,4 @@
-import Game, { GAME_RESULT } from './Game';
+import Game, { GAME_RESULT, MISSING_MOVE_ERROR } from './Game';
 import { MOVE_TYPE } from './Move/Move';
 
 const winnerLoserConfigurations = [
@@ -19,7 +19,7 @@ describe('Game', () => {
         thrownError = error;
       }
 
-      expect(thrownError).toBeDefined();
+      expect(thrownError).toBe(MISSING_MOVE_ERROR);
     });
   });
 
