@@ -1,4 +1,4 @@
-import Move, { MOVE_TYPE } from './Move/Move';
+import { Move, MOVE_TYPE } from './Move';
 
 export const GAME_RESULT = Object.freeze({
   FIRST_PLAYER: 0,
@@ -12,7 +12,7 @@ export default class Game {
       this.firstPlayerMove &&
       this.secondPlayerMove
     )) {
-      throw new Error('Not all players and moves are specified');
+      throw new Error('Not all moves are specified');
     }
 
     const [firstMoveType, secondMoveType] = [this.firstPlayerMove.getType(), this.secondPlayerMove.getType()];

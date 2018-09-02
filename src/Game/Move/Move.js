@@ -4,7 +4,7 @@ export const MOVE_TYPE = Object.freeze({
   SCISSORS: 2,
 });
 
-export default class Move {
+export class Move {
   constructor(moveType) {
     this.type = moveType;
   }
