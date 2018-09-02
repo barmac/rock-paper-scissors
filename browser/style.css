@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.game {
+  height: 100%;
+  padding: 16px;
+  background-color: lightgray;
+}
+
+.header {
+  background-color: snow;
+  padding: .5em;
+  border-radius: 1em;
+  text-align: center;
+}
+
+.header-text {
+  font-weight: lighter;
+  font-size: 2em;
+}
+
+.game-options-header {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.game-options-list {
+  list-style-type: none;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.game-options-list-item-button,
+.players-player-move,
+.result-button,
+.result-view,
+.play-again-button {
+  border-radius: 1em;
+  background-color: gray;
+  font-weight: bold;
+  font-size: 1em;
+  color: whitesmoke;
+  padding: .5em;
+  width: 100%;
+}
+
+.players-player-move[disabled] {
+  background-color: darkgray;
+}
+
+.players-player-move.players-player-move__selected {
+  background-color: black;
+}
+
+.players-player-move.players-player-move__win {
+  background-color: green;
+}
+
+.section {
+  margin-bottom: 2em;
+}
+
+.players-player-move {
+  border-radius: 1em;
+  background-color: gray;
+  font-weight: bold;
+  font-size: 1em;
+  color: whitesmoke;
+  text-align: center;
+  padding: .5em;
+}
+
+.result-view {
+  background-color: darkolivegreen;
+}
