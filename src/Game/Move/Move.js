@@ -1,7 +1,7 @@
 export const MOVE_TYPE = Object.freeze({
-  ROCK: 0,
-  PAPER: 1,
-  SCISSORS: 2,
+  ROCK: 'Rock',
+  PAPER: 'Paper',
+  SCISSORS: 'Scissors',
 });
 
 export class Move {

@@ -3,9 +3,9 @@ import { Move, MOVE_TYPE } from './Move';
 export const MISSING_MOVE_ERROR = 'MISSING_MOVE_ERROR';
 
 export const GAME_RESULT = Object.freeze({
-  FIRST_PLAYER: 0,
-  SECOND_PLAYER: 1,
-  TIE: 2,
+  FIRST_PLAYER: 'First player wins',
+  SECOND_PLAYER: 'Second player wins',
+  TIE: 'Tie',
 });
 
 export default class Game {

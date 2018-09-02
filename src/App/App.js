@@ -91,13 +91,13 @@ export class App {
 
   getStartGameTemplate() {
     return `
-      <nav>
-        <h2>Start new game</h2>
-        <ul>
-          <li>
+      <nav class="game-options">
+        <h2 class="game-options-header">Start new game</h2>
+        <ul class="game-options-list">
+          <li class="game-options-list-item">
             <button data-mode="${GAME_MODE.PLAYER_VS_COMPUTER}">Player vs Computer</button>
           </li>
-          <li>
+          <li class="game-options-list-item">
             <button data-mode="${GAME_MODE.COMPUTER_VS_COMPUTER}">Computer vs Computer</button>
           </li>
         </ul>
@@ -106,13 +106,13 @@ export class App {
 
   renderChooseMove() {
     this.rootElement.innerHTML = this.getChooseMoveTemplate();
-    this.rootElement.querySelector('[data-result-button]')
+    this.rootElement.querySelector('.result-button')
       .addEventListener('click', () => this.showResult());
 
     if (this.state.mode === GAME_MODE.PLAYER_VS_COMPUTER) {
       Object.keys(MOVE_TYPE)
         .forEach(key => {
-          this.rootElement.querySelector(`[data-first-player] [data-move="${key}"]`)
+          this.rootElement.querySelector(`.players-player__first [data-move="${key}"]`)
             .addEventListener('click', () => this.assignFirstPlayerMove(MOVE_TYPE[key]));
         });
     }
@@ -122,29 +122,30 @@ export class App {
     const hiddenMoveTemplate = this.getHiddenMoveTemplate();
 
     return `
-      <section>
-        <div data-first-player>
+      <section class="players">
+        <div class="players-player__first">
           <h3>${this.state.firstPlayerName}</h3>
-          <div data-move-list>${this.state.mode === GAME_MODE.PLAYER_VS_COMPUTER ? this.getMoveListTemplate() : hiddenMoveTemplate}</div>
+          ${this.state.mode === GAME_MODE.PLAYER_VS_COMPUTER ? this.getMoveListTemplate() : hiddenMoveTemplate}
         </div>
-        <div data-second-player>
+        <div class="players-player__second">
           <h3>${this.state.secondPlayerName}</h3>
-          <div data-move-list>${hiddenMoveTemplate}</div>
+          ${hiddenMoveTemplate}
         </div>
       </section>
-      <section data-result>
-        <button data-result-button>Get result</button>
+      <section class="result">
+        <h3 class="result-header">Result</h3>
+        <button class="result-button">Get result</button>
       </section>`;
   }
 
   getHiddenMoveTemplate() {
-    return '<button disabled>?</button>';
+    return '<button disabled class="players-player-move">?</button>';
   }
 
   getMoveListTemplate() {
-    return Object.keys(MOVE_TYPE)
-      .map(key => `<button data-move="${key}">${key}</button>`)
-      .join('');
+    return `<div>${Object.keys(MOVE_TYPE)
+      .map(key => `<button class="players-player-move" data-move="${key}">${key}</button>`)
+      .join('')}</div>`;
   }
 
   showResult() {
@@ -193,27 +194,29 @@ export class App {
 
   renderShowResult() {
     this.rootElement.innerHTML = this.getShowResultTemplate();
-    this.rootElement.querySelector('[data-play-again]')
+    this.rootElement.querySelector('.play-again-button')
       .addEventListener('click', () => this.init());
   }
 
   getShowResultTemplate() {
     return `
-      <section>
-        <div>
+      <section class="players">
+        <div class="players-player__first">
           <h3>${this.state.firstPlayerName}</h3>
-          <div>${this.state.firstPlayerMove}</div>
+          <button disabled class="players-player-move">${this.state.firstPlayerMove}</div>
         </div>
-        <div>
+        <div class="players-player__second">
           <h3>${this.state.secondPlayerName}</h3>
-          <div>${this.state.secondPlayerMove}</div>
+          <button disabled class="players-player-move">${this.state.secondPlayerMove}</div>
         </div>
       </section>
-      <section data-result>
-        <h3>${this.state.result}</h3>
+      <section class="result">
+        <h3 class="result-header">Result</h3>
+        <button disabled class="result-view">${this.state.result}</button>
       </section>
-      <section>
-        <button data-play-again>Play again</button>
+      <section class="play-again">
+        <h3 class="play-again-header">Play again?</h3>
+        <button class="play-again-button">Play again</button>
       </section>`;
   }
 }
