@@ -95,10 +95,10 @@ export class App {
         <h2 class="game-options-header">Start new game</h2>
         <ul class="game-options-list">
           <li class="game-options-list-item">
-            <button data-mode="${GAME_MODE.PLAYER_VS_COMPUTER}">Player vs Computer</button>
+            <button class="game-options-list-item-button" data-mode="${GAME_MODE.PLAYER_VS_COMPUTER}">Player vs Computer</button>
           </li>
           <li class="game-options-list-item">
-            <button data-mode="${GAME_MODE.COMPUTER_VS_COMPUTER}">Computer vs Computer</button>
+            <button class="game-options-list-item-button" data-mode="${GAME_MODE.COMPUTER_VS_COMPUTER}">Computer vs Computer</button>
           </li>
         </ul>
       </nav>`;
@@ -144,7 +144,7 @@ export class App {
 
   getMoveListTemplate() {
     return `<div>${Object.keys(MOVE_TYPE)
-      .map(key => `<button class="players-player-move" data-move="${key}">${key}</button>`)
+      .map(key => `<button class="players-player-move ${this.state.firstPlayerMove === MOVE_TYPE[key] ? 'players-player-move__selected' : ''}" data-move="${key}">${key}</button>`)
       .join('')}</div>`;
   }
 

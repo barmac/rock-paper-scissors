@@ -34,7 +34,11 @@ body {
   padding: 0;
 }
 
-.game button {
+.game-options-list-item-button,
+.players-player-move,
+.result-button,
+.result-view,
+.play-again-button {
   border-radius: 1em;
   background-color: gray;
   font-weight: bold;
@@ -44,11 +48,15 @@ body {
   width: 100%;
 }
 
-.game button[disabled] {
+.players-player-move[disabled] {
   background-color: darkgray;
 }
 
-.game section {
+.players-player-move.players-player-move__selected {
+  background-color: black;
+}
+
+.section {
   margin-bottom: 2em;
 }
 
@@ -60,4 +68,8 @@ body {
   color: whitesmoke;
   text-align: center;
   padding: .5em;
+}
+
+.result-view {
+  background-color: gold;
 }
