@@ -4,8 +4,7 @@
   "description": "",
   "main": "./src/App.js",
   "scripts": {
-    "start": "parcel ./public/index.html",
-    "build": "parcel build ./public/index.html",
+    "start": "open ./browser/index.html",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
@@ -13,7 +12,6 @@
   "author": "Maciej Barelkowski",
   "license": "ISC",
   "devDependencies": {
-    "jest": "23.5.0",
-    "parcel": "1.9.7"
+    "jest": "23.5.0"
   }
 }
