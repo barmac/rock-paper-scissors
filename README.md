@@ -2,6 +2,8 @@
 
 This project was prepared as a code test for eBay. The app is a simple rock-paper-scissors game. A player can choose to play against computer or to let two computer players to play against each other.
 
+New moves available can be easily added in the `Game.js` file by adding a `MOVE_TYPE` and a proper result matrix in `Game.prototype.getResult`.
+
 ## Installation
 
 Run `npm i` to install Jest for tests. There are no dependencies of the app itself.
