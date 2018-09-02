@@ -56,6 +56,10 @@ body {
   background-color: black;
 }
 
+.players-player-move.players-player-move__win {
+  background-color: green;
+}
+
 .section {
   margin-bottom: 2em;
 }
@@ -71,5 +75,5 @@ body {
 }
 
 .result-view {
-  background-color: gold;
+  background-color: darkolivegreen;
 }

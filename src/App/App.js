@@ -1,4 +1,4 @@
-import Game, { MISSING_MOVE_ERROR, MOVE_TYPE } from '../Game';
+import Game, { GAME_RESULT, MISSING_MOVE_ERROR, MOVE_TYPE } from '../Game';
 
 const GAME_MODE = {
   PLAYER_VS_COMPUTER: 'PLAYER_VS_COMPUTER',
@@ -203,11 +203,11 @@ export class App {
       <section class="players">
         <div class="players-player__first">
           <h3>${this.state.firstPlayerName}</h3>
-          <button disabled class="players-player-move">${this.state.firstPlayerMove}</div>
+          <button disabled class="players-player-move ${this.state.result === GAME_RESULT.FIRST_PLAYER ? 'players-player-move__win' : ''}">${this.state.firstPlayerMove}</div>
         </div>
         <div class="players-player__second">
           <h3>${this.state.secondPlayerName}</h3>
-          <button disabled class="players-player-move">${this.state.secondPlayerMove}</div>
+          <button disabled class="players-player-move ${this.state.result === GAME_RESULT.SECOND_PLAYER ? 'players-player-move__win' : ''}">${this.state.secondPlayerMove}</div>
         </div>
       </section>
       <section class="result">
