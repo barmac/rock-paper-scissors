@@ -19,7 +19,7 @@ describe('Game', () => {
         thrownError = error;
       }
 
-      expect(thrownError).toBe(MISSING_MOVE_ERROR);
+      expect(thrownError.message).toBe(MISSING_MOVE_ERROR);
     });
   });
 
